@@ -1,12 +1,13 @@
 import logo from '/vite.svg'
+import css from "./Header.module.css";
 
-export  function Header() {
+export default function Header() {
     const now = new Date()
     return (
-        <header>
+        <header><div className="header">
             <img src={logo} alt="Vite logotype" />
-             {/* <a href="">Test logo</a> */}
-            <span>Поточний час: { now.toLocaleTimeString() }</span>
+            <span>Поточний час: {now.toLocaleTimeString()}</span>
+            </div>
          </header>
        
     )
