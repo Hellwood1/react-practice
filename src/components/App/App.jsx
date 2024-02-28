@@ -2,18 +2,45 @@
 import Header from '../Header/Header';
 import GoalsList from '../GoalsList/GoalsList';
 import {goals} from '../Data/Data';
+import {useState} from "react"
+
 import Button from '../Button/Button';
-import {useState} from 'react'
+import Progress from '../Progress/Progress'
+
+
 
 
 export default function App() {
 
-  const [contentType, setContentType] = useState() 
+  const [selectedIndx, setSelectedIndx] = useState(0);
+
+  const handleClickAdd = () => {
+    
+    setSelectedIndx(selectedIndx + 1);
+  };
+
+  const handleClickDel = () => {
+    
+    setSelectedIndx(selectedIndx - 1);
+  };
   
+  const isAddBtn = selectedIndx === 10;
+
+  const isDelBtn = selectedIndx === 0;
+
+//   const [clicks, setClicks] = useState(0);
+
+//   const [mouseEnter, setMouseEnter] = useState(0);
   
-  function handleClick(type) {
-    setContentType(type)  
-}
+
+//   function handleClick() {
+//     setClicks (clicks + 1)
+   
+//   }
+  
+//   function handleMouseEnter() {
+//   setMouseEnter (mouseEnter +1 )
+// }
 
   return (
     <>
@@ -30,16 +57,9 @@ export default function App() {
         <GoalsList  {...goals[3]}/>
       </ul>
    </div>
-    <div>
-      <Button onClick={() => handleClick('Вітаю! Форма успішно відправлена!')}> Відправити форму </Button>
-        <Button onClick={() => handleClick('Форма успішно очищена!')}> Очістити форму </Button>
-        
-        
-{/* Хук з тернарним оператором, для відображення інформації після нажимання
-на кнопку */}
-        {contentType ? <p>{contentType}</p> : null}
-        
-    </div>
+      <Button isFirst={isAddBtn} isLast={isDelBtn} onAdd={handleClickAdd} onDell={handleClickDel} />
+      <Progress current={selectedIndx + 0} />
+
 
 </>
   );

@@ -1,9 +1,14 @@
-import css from "../Button/Button.module.css";
 
-export default function Button({ children, onClick }) {
+
+export default function Button({ isFirst, isLast, onAdd, onDell }) {
   
+    
 
-    return <button className={css.btn}
-        onClick={onClick}
-        >{children}</button>
+    return  <div>
+      
+        <button disabled={isFirst} onClick={onAdd} > Add </button>
+        <button disabled={isLast} onClick={onDell}> Deleted </button>
+        
+
+      </div>
 }
